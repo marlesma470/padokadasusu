@@ -1,0 +1,3587 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padoka da SuSu - Confeitaria & Padaria</title>
+    <meta name="description" content="Padoka da SuSu - Confeitaria & Padaria em Porto Alegre. Pães frescos, bolos artesanais e doces especiais.">
+    <meta name="keywords" content="padaria, confeitaria, pães, bolos, Porto Alegre, doces, salgados">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #d4a55d;
+            --secondary: #f7f2ea;
+            --dark: #5c3d1c;
+            --light: #ffffff;
+            --gray: #a6a6a6;
+            --success: #8aa86e;
+            --brown: #8b5a2b;
+            --error: #e74c3c;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--dark);
+            line-height: 1.6;
+            background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            background-color: rgba(247, 242, 234, 0.85);
+            font-size: 0.7rem; /* Redução de 30% no tamanho da fonte */
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem; /* Reduzido 30% */
+            font-weight: bold;
+            color: var(--brown);
+        }
+        
+        .logo i {
+            font-size: 1.26rem; /* Reduzido 30% */
+            color: var(--primary);
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 8.4px 14px; /* Reduzido 30% */
+            border-radius: 30px;
+            border: 1px solid var(--gray);
+            font-size: 0.7rem; /* Reduzido 30% */
+            background-color: var(--secondary);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .search-suggestion {
+            padding: 7px 10.5px; /* Reduzido 30% */
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .search-suggestion:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .user-actions a {
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        
+        /* Banner Principal */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            padding: 56px 0; /* Reduzido 30% */
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 1.75rem; /* Reduzido 30% */
+            margin-bottom: 14px; /* Reduzido 30% */
+        }
+        
+        .hero p {
+            font-size: 0.84rem; /* Reduzido 30% */
+            max-width: 600px;
+            margin: 0 auto 21px; /* Reduzido 30% */
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 8.4px 21px; /* Reduzido 30% */
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--brown);
+            transform: translateY(-2px);
+        }
+        
+        .btn-add {
+            background-color: var(--success);
+            padding: 7px 14px; /* Reduzido 30% */
+            font-size: 0.63rem; /* Reduzido 30% */
+        }
+        
+        .btn-add:hover {
+            background-color: #6e8a55;
+        }
+        
+        /* Informações do Restaurante */
+        .restaurant-info {
+            background-color: var(--light);
+            padding: 28px 0; /* Reduzido 30% */
+            margin-top: -35px; /* Reduzido 30% */
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        /* Categorias */
+        .categories {
+            padding: 28px 0; /* Reduzido 30% */
+        }
+        
+        .section-title {
+            font-size: 1.26rem; /* Reduzido 30% */
+            margin-bottom: 14px; /* Reduzido 30% */
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .category-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-card:hover, .category-card.active {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .category-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .category-card:hover i, .category-card.active i {
+            color: var(--light);
+        }
+        
+        /* Produtos */
+        .products {
+            padding: 28px 0; /* Reduzido 30% */
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 180px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 0.84rem; /* Reduzido 30% */
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .product-description {
+            color: var(--gray);
+            font-size: 0.63rem; /* Reduzido 30% */
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            font-size: 0.84rem; /* Reduzido 30% */
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .size-options {
+            margin-bottom: 15px;
+        }
+        
+        .size-option {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .size-option input {
+            display: none;
+        }
+        
+        .size-option label {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid var(--gray);
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .size-option input:checked + label {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .complements-section {
+            margin-bottom: 15px;
+        }
+        
+        .complement-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+        
+        .complement-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .complement-checkbox {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .complement-price {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .product-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            background-color: var(--secondary);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .quantity-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .item-total {
+            font-weight: bold;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        /* Modal de Detalhes do Produto */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: var(--light);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .modal-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-details {
+            flex: 1;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .modal-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .modal-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .modal-ingredients {
+            margin-bottom: 20px;
+        }
+        
+        .modal-ingredients h4 {
+            margin-bottom: 10px;
+        }
+        
+        .modal-ingredients ul {
+            padding-left: 20px;
+        }
+        
+        .modal-ingredients li {
+            margin-bottom: 5px;
+        }
+        
+        .complements-section {
+            margin-bottom: 20px;
+        }
+        
+        .complements-section h4 {
+            margin-bottom: 10px;
+        }
+        
+        .complement-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .complement-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .complement-checkbox {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .complement-price {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        /* Carrinho - Layout Corrigido */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background-color: var(--light);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--secondary);
+            background-color: var(--light);
+            flex-shrink: 0;
+        }
+        
+        .cart-header h3 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .cart-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
+        
+        .cart-items-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .cart-items-title {
+            padding: 15px 20px 10px;
+            font-weight: bold;
+            color: var(--dark);
+            background-color: var(--light);
+            border-bottom: 1px solid var(--secondary);
+            flex-shrink: 0;
+        }
+        
+        .cart-items {
+            flex: 1;
+            padding: 0 20px;
+            overflow-y: auto;
+            max-height: 300px;
+            min-height: 150px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-info h4 {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cart-item-price {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .cart-item-complements {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        .cart-item-size {
+            font-size: 0.8rem;
+            color: var(--dark);
+            margin-top: 3px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .remove-item:hover {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            background-color: var(--light);
+            overflow-y: auto;
+            flex-shrink: 0;
+            max-height: 60vh;
+        }
+        
+        .delivery-option {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--gray);
+        }
+        
+        .delivery-option h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .delivery-option-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .delivery-option-radio {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .delivery-option-radio input {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .address-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--gray);
+            display: none;
+        }
+        
+        .address-section.active {
+            display: block;
+        }
+        
+        .address-section h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .form-control.error {
+            border-color: var(--error);
+        }
+        
+        .error-message {
+            color: var(--error);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .payment-method {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--gray);
+        }
+        
+        .payment-method h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .payment-option input {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .cart-subtotal, .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--gray);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--success);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #6e8a55;
+        }
+        
+        .checkout-btn:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+        }
+        
+        .empty-cart-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 28px 0 14px; /* Reduzido 30% */
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--light);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            color: var(--light);
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Mensagens de feedback */
+        .feedback-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 2000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .feedback-message.show {
+            transform: translateX(0);
+        }
+        
+        .feedback-message.success {
+            background-color: var(--success);
+        }
+        
+        .feedback-message.error {
+            background-color: var(--error);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 3;
+                margin: 15px 0 0;
+                max-width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cart-sidebar {
+                max-width: 100%;
+            }
+            
+            .modal-body {
+                flex-direction: column;
+            }
+            
+            .modal-image {
+                height: 200px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .quantity-selector {
+                justify-content: center;
+                margin-right: 0;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .cart-items {
+                max-height: 250px;
+            }
+            
+            .cart-footer {
+                max-height: 50vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .modal-content {
+                margin: 10px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .cart-items {
+                max-height: 200px;
+            }
+            
+            .cart-footer {
+                max-height: 45vh;
+            }
+        }
+        
+        /* Melhorias de responsividade */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                order: 0;
+                margin: 0;
+                width: 100%;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .quantity-selector {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mensagens de feedback -->
+    <div id="feedback-message" class="feedback-message" aria-live="polite"></div>
+
+    <!-- Header -->
+    <header role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-bread-slice" aria-hidden="true"></i>
+                    <span>Padoka da SuSu</span>
+                </div>
+                
+                <div class="search-bar">
+                    <label for="search-input" class="sr-only">Buscar no cardápio</label>
+                    <input type="text" id="search-input" placeholder="Buscar no cardápio..." aria-label="Buscar no cardápio">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <div class="search-suggestions" id="search-suggestions" role="listbox"></div>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#" id="cart-toggle" aria-label="Abrir carrinho de compras">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i> Carrinho
+                        <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Banner Principal -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <h1 id="hero-title">Os melhores sabores da confeitaria</h1>
+                <p>Pães frescos, bolos artesanais e doces especiais feitos com carinho</p>
+            </div>
+        </section>
+
+        <!-- Informações do Restaurante -->
+        <section class="restaurant-info" aria-labelledby="restaurant-info-title">
+            <div class="container">
+                <h2 id="restaurant-info-title" class="sr-only">Informações do Restaurante</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <div>
+                            <h3>Entrega Rápida</h3>
+                            <p>30-40 min</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card" id="location-card" role="button" tabindex="0" aria-label="Abrir localização no Google Maps">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <div>
+                            <h3>Localização</h3>
+                            <p>Rua Ala, 299 - Bom Jesus, Porto Alegre</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <div>
+                            <h3>Avaliação</h3>
+                            <p>4,9 (856 avaliações)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categorias -->
+        <section class="categories" aria-labelledby="categories-title">
+            <div class="container">
+                <h2 id="categories-title" class="section-title">Nossas Categorias</h2>
+                <div class="categories-grid" role="tablist">
+                    <div class="category-card active" data-category="all" role="tab" aria-selected="true" tabindex="0">
+                        <i class="fas fa-utensils" aria-hidden="true"></i>
+                        <h3>Todos</h3>
+                    </div>
+                    
+                    <div class="category-card" data-category="paes" role="tab" aria-selected="false" tabindex="0">
+                        <i class="fas fa-bread-slice" aria-hidden="true"></i>
+                        <h3>Pães</h3>
+                    </div>
+                    
+                    <div class="category-card" data-category="bolos" role="tab" aria-selected="false" tabindex="0">
+                        <i class="fas fa-birthday-cake" aria-hidden="true"></i>
+                        <h3>Bolos</h3>
+                    </div>
+                    
+                    <div class="category-card" data-category="doces" role="tab" aria-selected="false" tabindex="0">
+                        <i class="fas fa-cookie" aria-hidden="true"></i>
+                        <h3>Doces</h3>
+                    </div>
+                    
+                    <div class="category-card" data-category="bebidas" role="tab" aria-selected="false" tabindex="0">
+                        <i class="fas fa-mug-hot" aria-hidden="true"></i>
+                        <h3>Bebidas</h3>
+                    </div>
+                    
+                    <div class="category-card" data-category="lanches" role="tab" aria-selected="false" tabindex="0">
+                        <i class="fas fa-hamburger" aria-hidden="true"></i>
+                        <h3>Lanches</h3>
+                    </div>
+                    
+                    <div class="category-card" data-category="salgados" role="tab" aria-selected="false" tabindex="0">
+                        <i class="fas fa-pizza-slice" aria-hidden="true"></i>
+                        <h3>Salgados</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Produtos -->
+        <section class="products" id="products" aria-labelledby="products-title">
+            <div class="container">
+                <h2 id="products-title" class="section-title">Cardápio</h2>
+                <div class="products-grid" id="products-grid">
+                    <!-- Produtos serão carregados dinamicamente aqui -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Detalhes do Produto -->
+    <div class="modal" id="product-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalhes do Produto</h3>
+                <button class="close-modal" id="close-modal" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image" id="modal-image"></div>
+                <div class="modal-details">
+                    <h2 class="modal-title" id="modal-product-title"></h2>
+                    <p class="modal-price" id="modal-price"></p>
+                    <p class="modal-description" id="modal-description"></p>
+                    <div class="modal-ingredients">
+                        <h4>Ingredientes:</h4>
+                        <ul id="modal-ingredients"></ul>
+                    </div>
+                    <div class="complements-section" id="complements-section">
+                        <h4>Complementos (opcionais):</h4>
+                        <div id="complements-list"></div>
+                    </div>
+                    <div class="modal-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" id="decrease-quantity" aria-label="Diminuir quantidade">-</button>
+                            <span class="quantity-value" id="modal-quantity">1</span>
+                            <button class="quantity-btn" id="increase-quantity" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <button class="btn" id="add-to-cart-modal">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-sidebar" id="cart-sidebar" role="dialog" aria-labelledby="cart-title" aria-modal="true">
+        <div class="cart-header">
+            <h3 id="cart-title"><i class="fas fa-shopping-cart" aria-hidden="true"></i> Seu Carrinho</h3>
+            <button class="close-cart" id="close-cart" aria-label="Fechar carrinho">&times;</button>
+        </div>
+        
+        <div class="cart-content">
+            <div class="cart-items-container">
+                <div class="cart-items-title">Itens do Pedido</div>
+                <div class="cart-items" id="cart-items">
+                    <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+                    <p class="empty-cart-message" id="empty-cart-message">Seu carrinho está vazio</p>
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="delivery-option">
+                    <h4>Como você prefere receber?</h4>
+                    <div class="delivery-option-group">
+                        <div class="delivery-option-radio">
+                            <input type="radio" id="delivery-pickup" name="delivery" value="pickup" checked>
+                            <label for="delivery-pickup">Retirar no local</label>
+                        </div>
+                        <div class="delivery-option-radio">
+                            <input type="radio" id="delivery-home" name="delivery" value="home">
+                            <label for="delivery-home">Entrega em casa</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="address-section" id="address-section">
+                    <h4>Endereço de Entrega:</h4>
+                    <div class="form-group">
+                        <label for="customer-street">Rua:</label>
+                        <input type="text" id="customer-street" class="form-control" placeholder="Nome da rua" aria-required="true">
+                        <div class="error-message" id="street-error">Por favor, informe a rua</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-number">Número:</label>
+                        <input type="text" id="customer-number" class="form-control" placeholder="Número" aria-required="true">
+                        <div class="error-message" id="number-error">Por favor, informe o número</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-neighborhood">Bairro:</label>
+                        <input type="text" id="customer-neighborhood" class="form-control" placeholder="Bairro" aria-required="true">
+                        <div class="error-message" id="neighborhood-error">Por favor, informe o bairro</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-complement">Complemento (opcional):</label>
+                        <input type="text" id="customer-complement" class="form-control" placeholder="Apto, bloco, referência">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-address-confirm">Endereço confirmado:</label>
+                        <input type="text" id="customer-address-confirm" class="form-control" placeholder="Endereço completo conforme Google Maps" readonly>
+                    </div>
+                </div>
+                
+                <div class="payment-method">
+                    <h4>Forma de Pagamento:</h4>
+                    <div class="payment-option">
+                        <input type="radio" id="payment-machine" name="payment" value="machine" checked>
+                        <label for="payment-machine">Presencial</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="payment-online" name="payment" value="online">
+                        <label for="payment-online">Online (link de pagamento)</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="payment-cash" name="payment" value="cash">
+                        <label for="payment-cash">Dinheiro</label>
+                    </div>
+                </div>
+                
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">R$ 0,00</span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">R$ 0,00</span>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    Finalizar Pedido via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Padoka da SuSu</h4>
+                    <ul>
+                        <li><a href="#">Promoções</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#">(51) 9999-9999</a></li>
+                        <li><a href="#">contato@padokadasusu.com</a></li>
+                        <li><a href="#">Rua Ala, 299 - Bom Jesus, Porto Alegre</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Horários</h4>
+                    <ul>
+                        <li>Segunda a Sexta: 7h às 20h</li>
+                        <li>Sábados: 7h às 18h</li>
+                        <li>Domingos: 8h às 14h</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Padoka da SuSu. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados dos produtos atualizados com mais produtos
+        const products = {
+            // Pães (10 produtos)
+            1: {
+                title: "Pão de Queijo",
+                price: 12.90,
+                description: "Pão de queijo mineiro tradicional, 6 unidades",
+                image: "https://lactvit.com.br/wp-content/uploads/2023/08/pao-queijo.jpg",
+                category: "paes",
+                emoji: "🧀",
+                sizes: null,
+                ingredients: [
+                    "Polvilho azedo",
+                    "Queijo minas padrão",
+                    "Leite",
+                    "Óleo",
+                    "Ovos",
+                    "Sal"
+                ],
+                complements: [
+                    { name: "Recheio de requeijão", price: 2.00 },
+                    { name: "Queijo extra", price: 3.00 },
+                    { name: "Presunto", price: 2.50 },
+                    { name: "Orégano", price: 1.00 },
+                    { name: "Azeitonas", price: 1.50 }
+                ]
+            },
+            2: {
+                title: "Croissant",
+                price: 9.90,
+                description: "Croissant folhado com manteiga",
+                image: "https://delishglobe.com/wp-content/uploads/2024/11/Croissants-article.png",
+                category: "paes",
+                emoji: "🥐",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Manteiga",
+                    "Leite",
+                    "Açúcar",
+                    "Sal",
+                    "Fermento"
+                ],
+                complements: [
+                    { name: "Recheio de chocolate", price: 3.00 },
+                    { name: "Recheio de creme", price: 3.00 },
+                    { name: "Presunto e queijo", price: 4.00 },
+                    { name: "Geleia de morango", price: 2.00 },
+                    { name: "Cream cheese", price: 2.50 }
+                ]
+            },
+            3: {
+                title: "Pão Francês",
+                price: 8.90,
+                description: "Pão francês fresquinho, 5 unidades",
+                image: "https://guiadacozinha.com.br/wp-content/uploads/2018/10/paofrancesfolhado.jpg",
+                category: "paes",
+                emoji: "🥖",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Água",
+                    "Sal",
+                    "Açúcar",
+                    "Fermento biológico"
+                ],
+                complements: [
+                    { name: "Manteiga", price: 1.00 },
+                    { name: "Geleia", price: 2.00 },
+                    { name: "Queijo", price: 2.50 },
+                    { name: "Presunto", price: 2.50 },
+                    { name: "Requeijão", price: 2.00 }
+                ]
+            },
+            4: {
+                title: "Pão Integral",
+                price: 14.90,
+                description: "Pão integral com grãos, 400g",
+                image: "https://msabores.com/wp-content/uploads/2025/08/aveiaemel.webp",
+                category: "paes",
+                emoji: "🍞",
+                sizes: null,
+                ingredients: [
+                    "Farinha integral",
+                    "Farinha de trigo",
+                    "Grãos variados",
+                    "Mel",
+                    "Sal",
+                    "Fermento"
+                ],
+                complements: [
+                    { name: "Peito de peru", price: 3.00 },
+                    { name: "Queijo branco", price: 2.50 },
+                    { name: "Cream cheese", price: 2.00 },
+                    { name: "Geleia diet", price: 2.00 },
+                    { name: "Azeite", price: 1.50 }
+                ]
+            },
+            5: {
+                title: "Pão Caseiro",
+                price: 12.90,
+                description: "Pão de forma tradicional caseiro, especialidade da casa, 500g",
+                image: "https://renata.com.br/images/receitas/387/renata-imagem-receitas-pao-caseiro-fofinho-de-liquidificador-share.jpg",
+                category: "paes",
+                emoji: "🍞",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Água",
+                    "Açúcar",
+                    "Sal",
+                    "Fermento",
+                    "Ovos",
+                    "Manteiga"
+                ],
+                complements: [
+                    { name: "Manteiga", price: 1.00 },
+                    { name: "Geleia", price: 2.00 },
+                    { name: "Queijo", price: 2.50 },
+                    { name: "Presunto", price: 2.50 },
+                    { name: "Requeijão", price: 2.00 }
+                ]
+            },
+            6: {
+                title: "Baguete",
+                price: 10.90,
+                description: "Baguete artesanal crocante",
+                image: "https://cdn.awsli.com.br/1628/1628171/produto/62405687/76f884c911.jpg",
+                category: "paes",
+                emoji: "🥖",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Água",
+                    "Sal",
+                    "Fermento"
+                ],
+                complements: [
+                    { name: "Azeite e alho", price: 2.00 },
+                    { name: "Patê de azeitona", price: 3.00 },
+                    { name: "Queijo brie", price: 4.00 },
+                    { name: "Salame", price: 3.50 },
+                    { name: "Tomate seco", price: 3.00 }
+                ]
+            },
+            7: {
+                title: "Pão de Centeio",
+                price: 16.90,
+                description: "Pão de centeio escuro, 400g",
+                image: "https://www.comidaereceitas.com.br/wp-content/uploads/2012/01/pao-de-centeio-saudavel-com-leite-organico-e-manteiga.jpg",
+                category: "paes",
+                emoji: "🍞",
+                sizes: null,
+                ingredients: [
+                    "Farinha de centeio",
+                    "Farinha de trigo",
+                    "Mel",
+                    "Sal",
+                    "Fermento"
+                ],
+                complements: [
+                    { name: "Queijo gouda", price: 4.00 },
+                    { name: "Presunto parma", price: 5.00 },
+                    { name: "Mostarda dijon", price: 2.00 },
+                    { name: "Rúcula", price: 1.50 },
+                    { name: "Tomate", price: 1.00 }
+                ]
+            },
+            8: {
+                title: "Pão de Alho",
+                price: 15.90,
+                description: "Pão de alho caseiro, 4 unidades",
+                image: "https://static.itdg.com.br/images/640-440/bdf5859e802e5edf6c66d25f4927b2bc/shutterstock-1658158945.jpg",
+                category: "paes",
+                emoji: "🧄",
+                sizes: null,
+                ingredients: [
+                    "Pão francês",
+                    "Alho",
+                    "Manteiga",
+                    "Queijo parmesão",
+                    "Salsinha",
+                    "Azeite"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 2.00 },
+                    { name: "Bacon", price: 3.00 },
+                    { name: "Orégano", price: 1.00 },
+                    { name: "Pimenta", price: 1.00 },
+                    { name: "Catupiry", price: 3.00 }
+                ]
+            },
+            9: {
+                title: "Pão Doce",
+                price: 11.90,
+                description: "Pão doce com frutas cristalizadas",
+                image: "https://cdn0.tudoreceitas.com/pt/posts/3/8/9/pao_doce_com_frutas_cristalizadas_4983_orig.jpg",
+                category: "paes",
+                emoji: "🍞",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Leite",
+                    "Manteiga",
+                    "Frutas cristalizadas",
+                    "Fermento"
+                ],
+                complements: [
+                    { name: "Doce de leite", price: 2.00 },
+                    { name: "Geleia de damasco", price: 2.50 },
+                    { name: "Creme de avelã", price: 3.00 },
+                    { name: "Chantilly", price: 2.50 },
+                    { name: "Canela", price: 1.00 }
+                ]
+            },
+            10: {
+                title: "Pão de Batata",
+                price: 13.90,
+                description: "Pão de batata macio, 4 unidades",
+                image: "https://images.aws.nestle.recipes/original/d453bab37da45b2f0ee7ee625485d212_img_1437.jpg",
+                category: "paes",
+                emoji: "🥔",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Batata",
+                    "Leite",
+                    "Ovos",
+                    "Manteiga",
+                    "Açúcar",
+                    "Sal",
+                    "Fermento"
+                ],
+                complements: [
+                    { name: "Requeijão", price: 2.00 },
+                    { name: "Queijo prato", price: 2.50 },
+                    { name: "Presunto", price: 2.50 },
+                    { name: "Orégano", price: 1.00 },
+                    { name: "Azeitonas", price: 1.50 }
+                ]
+            },
+
+            // Bolos (10 produtos)
+            11: {
+                title: "Bolo de Chocolate",
+                price: 42.90,
+                description: "Bolo macio com cobertura de chocolate belga",
+                image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1089&q=80",
+                category: "bolos",
+                emoji: "🍰",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 32.90 },
+                    { name: "Médio (20cm)", price: 42.90 },
+                    { name: "Grande (25cm)", price: 52.90 }
+                ],
+                ingredients: [
+                    "Farinha de trigo",
+                    "Cacau em pó",
+                    "Açúcar",
+                    "Ovos",
+                    "Leite",
+                    "Manteiga",
+                    "Chocolate belga 70%",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Cobertura extra de chocolate", price: 3.00 },
+                    { name: "Granulado colorido", price: 2.50 },
+                    { name: "Morango fresco", price: 5.00 },
+                    { name: "Chantilly", price: 4.00 },
+                    { name: "Nozes picadas", price: 3.50 }
+                ]
+            },
+            12: {
+                title: "Bolo de Cenoura",
+                price: 38.90,
+                description: "Bolo de cenoura com cobertura de chocolate",
+                image: "https://guiadacozinha.com.br/wp-content/uploads/2024/05/bolodecenoura.jpg",
+                category: "bolos",
+                emoji: "🥕",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 28.90 },
+                    { name: "Médio (20cm)", price: 38.90 },
+                    { name: "Grande (25cm)", price: 48.90 }
+                ],
+                ingredients: [
+                    "Cenoura",
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Óleo",
+                    "Chocolate",
+                    "Leite condensado",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Cobertura extra", price: 3.00 },
+                    { name: "Granulado", price: 2.50 },
+                    { name: "Nozes", price: 3.50 },
+                    { name: "Coco ralado", price: 2.00 },
+                    { name: "Chantilly", price: 4.00 }
+                ]
+            },
+            13: {
+                title: "Bolo de Limão",
+                price: 36.90,
+                description: "Bolo de limão com glacê de limão siciliano",
+                image: "https://www.receitasnestle.com.br/sites/default/files/srh_recipes/0154a9f97774a0fbb77d9bdd0269d7e4.jpg",
+                category: "bolos",
+                emoji: "🍋",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 26.90 },
+                    { name: "Médio (20cm)", price: 36.90 },
+                    { name: "Grande (25cm)", price: 46.90 }
+                ],
+                ingredients: [
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Limão siciliano",
+                    "Manteiga",
+                    "Leite",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Raspas de limão", price: 2.00 },
+                    { name: "Merengue", price: 4.00 },
+                    { name: "Coco ralado", price: 2.00 },
+                    { name: "Calda de limão", price: 2.50 },
+                    { name: "Chantilly", price: 4.00 }
+                ]
+            },
+            14: {
+                title: "Bolo de Fubá",
+                price: 32.90,
+                description: "Bolo de fubá cremoso com erva-doce",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAz36fpgLUXonIx5p4_SSku3klrxAdq7P9A&https://blog.nagumo.com.br/wp-content/uploads/2025/05/como-fazer-bolo-de-fuba.jpg",
+                category: "bolos",
+                emoji: "🌽",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 22.90 },
+                    { name: "Médio (20cm)", price: 32.90 },
+                    { name: "Grande (25cm)", price: 42.90 }
+                ],
+                ingredients: [
+                    "Fubá",
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Leite",
+                    "Óleo",
+                    "Erva-doce",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Queijo ralado", price: 2.50 },
+                    { name: "Goiabada", price: 3.00 },
+                    { name: "Coco ralado", price: 2.00 },
+                    { name: "Canela", price: 1.50 },
+                    { name: "Açúcar de confeiteiro", price: 1.00 }
+                ]
+            },
+            15: {
+                title: "Bolo Red Velvet",
+                price: 58.90,
+                description: "Bolo aveludado vermelho com cream cheese",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu06TS_gV0P59Q8rlmu1W9O_DHrFd6YcnJ4Q&s",
+                category: "bolos",
+                emoji: "🎂",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 48.90 },
+                    { name: "Médio (20cm)", price: 58.90 },
+                    { name: "Grande (25cm)", price: 68.90 }
+                ],
+                ingredients: [
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Manteiga",
+                    "Leite",
+                    "Cacau em pó",
+                    "Corante alimentício",
+                    "Cream cheese",
+                    "Açúcar de confeiteiro"
+                ],
+                complements: [
+                    { name: "Frutas vermelhas", price: 6.00 },
+                    { name: "Chantilly", price: 4.00 },
+                    { name: "Nozes", price: 3.50 },
+                    { name: "Calda de chocolate", price: 3.00 },
+                    { name: "Raspas de chocolate", price: 2.50 }
+                ]
+            },
+            16: {
+                title: "Bolo de Coco",
+                price: 34.90,
+                description: "Bolo de coco úmido com coco ralado",
+                image: "https://www.receiteria.com.br/wp-content/uploads/bolo-de-coco-simples.jpg",
+                category: "bolos",
+                emoji: "🥥",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 24.90 },
+                    { name: "Médio (20cm)", price: 34.90 },
+                    { name: "Grande (25cm)", price: 44.90 }
+                ],
+                ingredients: [
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Leite de coco",
+                    "Coco ralado",
+                    "Manteiga",
+                    "Leite",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Coco ralado extra", price: 2.00 },
+                    { name: "Calda de coco", price: 2.50 },
+                    { name: "Chantilly", price: 4.00 },
+                    { name: "Leite condensado", price: 3.00 },
+                    { name: "Açúcar de confeiteiro", price: 1.00 }
+                ]
+            },
+            17: {
+                title: "Bolo de Laranja",
+                price: 35.90,
+                description: "Bolo de laranja úmido com calda cítrica",
+                image: "https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2023/05/02/bolo-laranja-ursdzhu7qmur.jpg",
+                category: "bolos",
+                emoji: "🍊",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 25.90 },
+                    { name: "Médio (20cm)", price: 35.90 },
+                    { name: "Grande (25cm)", price: 45.90 }
+                ],
+                ingredients: [
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Suco de laranja",
+                    "Raspas de laranja",
+                    "Manteiga",
+                    "Leite",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Calda de laranja", price: 2.50 },
+                    { name: "Chantilly", price: 4.00 },
+                    { name: "Raspas de laranja", price: 2.00 },
+                    { name: "Açúcar de confeiteiro", price: 1.00 },
+                    { name: "Coco ralado", price: 2.00 }
+                ]
+            },
+            18: {
+                title: "Bolo de Milho",
+                price: 31.90,
+                description: "Bolo de milho verde cremoso",
+                image: "https://img-global.cpcdn.com/recipes/717ec8ea7ef807fb/1200x630cq80/photo.jpg",
+                category: "bolos",
+                emoji: "🌽",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 21.90 },
+                    { name: "Médio (20cm)", price: 31.90 },
+                    { name: "Grande (25cm)", price: 41.90 }
+                ],
+                ingredients: [
+                    "Milho verde",
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Leite",
+                    "Manteiga",
+                    "Coco ralado",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Queijo ralado", price: 2.50 },
+                    { name: "Erva-doce", price: 1.50 },
+                    { name: "Coco ralado", price: 2.00 },
+                    { name: "Açúcar de confeiteiro", price: 1.00 },
+                    { name: "Canela", price: 1.50 }
+                ]
+            },
+            19: {
+                title: "Bolo de Nozes",
+                price: 52.90,
+                description: "Bolo de nozes com recheio de doce de leite",
+                image: "https://s2-receitas.glbimg.com/N53FlqySiIhYXWr1Y2rzdM88pqI=/0x0:1366x768/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2022/s/g/XKpOpfS3OUWPjudF3h0g/bolo-de-nozes-receita.jpg",
+                category: "bolos",
+                emoji: "🥜",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 42.90 },
+                    { name: "Médio (20cm)", price: 52.90 },
+                    { name: "Grande (25cm)", price: 62.90 }
+                ],
+                ingredients: [
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Nozes",
+                    "Manteiga",
+                    "Leite",
+                    "Doce de leite",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Nozes extra", price: 4.00 },
+                    { name: "Doce de leite extra", price: 3.00 },
+                    { name: "Chantilly", price: 4.00 },
+                    { name: "Calda de caramelo", price: 2.50 },
+                    { name: "Avelãs", price: 3.50 }
+                ]
+            },
+            20: {
+                title: "Bolo de Brigadeiro",
+                price: 48.90,
+                description: "Bolo de chocolate com recheio de brigadeiro",
+                image: "https://i.ytimg.com/vi/h8Rz6vIwmjY/maxresdefault.jpg",
+                category: "bolos",
+                emoji: "🍫",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 38.90 },
+                    { name: "Médio (20cm)", price: 48.90 },
+                    { name: "Grande (25cm)", price: 58.90 }
+                ],
+                ingredients: [
+                    "Farinha de trigo",
+                    "Cacau em pó",
+                    "Açúcar",
+                    "Ovos",
+                    "Leite",
+                    "Manteiga",
+                    "Chocolate",
+                    "Leite condensado",
+                    "Fermento em pó"
+                ],
+                complements: [
+                    { name: "Granulado", price: 2.50 },
+                    { name: "Morango", price: 5.00 },
+                    { name: "Chantilly", price: 4.00 },
+                    { name: "Cerejas", price: 3.00 },
+                    { name: "Nozes", price: 3.50 }
+                ]
+            },
+
+            // Doces (10 produtos)
+            21: {
+                title: "Brigadeiro",
+                price: 4.90,
+                description: "Brigadeiro gourmet com chocolate 70%",
+                image: "https://s2-receitas.glbimg.com/hT_mwWzl5dBsGdINZKnU2GFt3iI=/0x0:1920x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2023/O/6/O6gVqvQ02RbAo8TPZGcQ/brigadeiro-receita.jpg",
+                category: "doces",
+                emoji: "🍫",
+                sizes: null,
+                ingredients: [
+                    "Chocolate 70% cacau",
+                    "Leite condensado",
+                    "Creme de leite",
+                    "Chocolate granulado"
+                ],
+                complements: [
+                    { name: "Coco ralado", price: 1.50 },
+                    { name: "Granulado colorido", price: 1.50 },
+                    { name: "Amendoim picado", price: 1.50 },
+                    { name: "Confeito de chocolate", price: 2.00 },
+                    { name: "Castanha do pará", price: 2.50 }
+                ]
+            },
+            22: {
+                title: "Beijinho",
+                price: 4.90,
+                description: "Beijinho de coco com leite condensado",
+                image: "https://espaconatelie.com.br/wp-content/uploads/2025/07/receita-de-beijinho-2.jpg",
+                category: "doces",
+                emoji: "🥥",
+                sizes: null,
+                ingredients: [
+                    "Leite condensado",
+                    "Coco ralado",
+                    "Manteiga",
+                    "Açúcar",
+                    "Cravo"
+                ],
+                complements: [
+                    { name: "Coco ralado extra", price: 1.50 },
+                    { name: "Chocolate branco", price: 2.00 },
+                    { name: "Leite em pó", price: 1.50 },
+                    { name: "Açúcar de confeiteiro", price: 1.00 },
+                    { name: "Canela", price: 1.00 }
+                ]
+            },
+            23: {
+                title: "Cajuzinho",
+                price: 4.90,
+                description: "Doce de amendoim com formato de caju",
+                image: "https://teamodoce.com.br/wp-content/uploads/2025/05/cajuzinho-simples.webp",
+                category: "doces",
+                emoji: "🥜",
+                sizes: null,
+                ingredients: [
+                    "Amendoim torrado",
+                    "Leite condensado",
+                    "Açúcar",
+                    "Chocolate em pó",
+                    "Manteiga"
+                ],
+                complements: [
+                    { name: "Amendoim extra", price: 1.50 },
+                    { name: "Chocolate granulado", price: 1.50 },
+                    { name: "Açúcar de confeiteiro", price: 1.00 },
+                    { name: "Coco ralado", price: 1.50 },
+                    { name: "Castanha", price: 2.00 }
+                ]
+            },
+            24: {
+                title: "Quindim",
+                price: 7.90,
+                description: "Quindim tradicional com coco e gemas",
+                image: "https://portalemfoco.com.br/wp-content/uploads/2021/06/ItuveravaPadaria20210609.jpg",
+                category: "doces",
+                emoji: "🍮",
+                sizes: null,
+                ingredients: [
+                    "Gemas",
+                    "Coco ralado",
+                    "Açúcar",
+                    "Manteiga",
+                    "Leite"
+                ],
+                complements: [
+                    { name: "Coco ralado extra", price: 1.50 },
+                    { name: "Calda de ameixa", price: 2.00 },
+                    { name: "Chantilly", price: 2.50 },
+                    { name: "Frutas cristalizadas", price: 2.50 },
+                    { name: "Açúcar de confeiteiro", price: 1.00 }
+                ]
+            },
+            25: {
+                title: "Pudim de Leite",
+                price: 22.90,
+                description: "Pudim de leite condensado com calda de caramelo",
+                image: "https://teamodoce.com.br/wp-content/uploads/2025/03/Pudim-de-Leite-Condensado-com-Furinhos-Novo.webp",
+                category: "doces",
+                emoji: "🍮",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 17.90 },
+                    { name: "Médio (20cm)", price: 22.90 },
+                    { name: "Grande (25cm)", price: 27.90 }
+                ],
+                ingredients: [
+                    "Leite condensado",
+                    "Leite",
+                    "Ovos",
+                    "Açúcar",
+                    "Baunilha"
+                ],
+                complements: [
+                    { name: "Calda extra", price: 2.00 },
+                    { name: "Chantilly", price: 3.00 },
+                    { name: "Frutas", price: 4.00 },
+                    { name: "Doce de leite", price: 2.50 },
+                    { name: "Coco ralado", price: 1.50 }
+                ]
+            },
+            26: {
+                title: "Bem Casado",
+                price: 6.90,
+                description: "Doce de casamento com recheio de doce de leite",
+                image: "https://moinhoglobo.com.br/wp-content/uploads/2015/06/bem-casado.jpg",
+                category: "doces",
+                emoji: "💑",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Açúcar",
+                    "Ovos",
+                    "Doce de leite",
+                    "Açúcar de confeiteiro"
+                ],
+                complements: [
+                    { name: "Recheio de chocolate", price: 1.50 },
+                    { name: "Recheio de coco", price: 1.50 },
+                    { name: "Recheio de creme", price: 1.50 },
+                    { name: "Chantilly", price: 2.00 },
+                    { name: "Fitas decorativas", price: 1.00 }
+                ]
+            },
+            27: {
+                title: "Torta de Limão",
+                price: 28.90,
+                description: "Torta de limão com massa crocante",
+                image: "https://recipesblob.oetker.com.br/assets/d044a4ef3cfe45998593f500c00942ef/1272x764/torta-de-limo.webp",
+                category: "doces",
+                emoji: "🍋",
+                sizes: [
+                    { name: "Pequeno (15cm)", price: 18.90 },
+                    { name: "Médio (20cm)", price: 28.90 },
+                    { name: "Grande (25cm)", price: 38.90 }
+                ],
+                ingredients: [
+                    "Biscoito maizena",
+                    "Manteiga",
+                    "Leite condensado",
+                    "Suco de limão",
+                    "Creme de leite",
+                    "Chantilly"
+                ],
+                complements: [
+                    { name: "Raspas de limão", price: 2.00 },
+                    { name: "Calda de limão", price: 2.50 },
+                    { name: "Chantilly extra", price: 3.00 },
+                    { name: "Merengue", price: 3.50 },
+                    { name: "Frutas", price: 4.00 }
+                ]
+            },
+            28: {
+                title: "Churros",
+                price: 8.90,
+                description: "Churros crocante com doce de leite, 3 unidades",
+                image: "https://hips.hearstapps.com/hmg-prod/images/churros-index-661d4692d05e4.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
+                category: "doces",
+                emoji: "🌯",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Água",
+                    "Manteiga",
+                    "Açúcar",
+                    "Canela",
+                    "Doce de leite"
+                ],
+                complements: [
+                    { name: "Doce de leite extra", price: 2.00 },
+                    { name: "Chocolate", price: 2.50 },
+                    { name: "Doce de leite com coco", price: 2.00 },
+                    { name: "Açúcar e canela extra", price: 1.00 },
+                    { name: "Chantilly", price: 2.50 }
+                ]
+            },
+            29: {
+                title: "Bombom de Morango",
+                price: 6.90,
+                description: "Morango fresco coberto com chocolate",
+                image: "https://img.cybercook.com.br/receitas/38/bombom-de-brigadeiro-branco-com-morango-1.jpeg",
+                category: "doces",
+                emoji: "🍓",
+                sizes: null,
+                ingredients: [
+                    "Morango fresco",
+                    "Chocolate ao leite",
+                    "Chocolate branco",
+                    "Açúcar de confeiteiro"
+                ],
+                complements: [
+                    { name: "Chocolate meio amargo", price: 1.00 },
+                    { name: "Chocolate branco", price: 1.00 },
+                    { name: "Granulado", price: 1.50 },
+                    { name: "Coco ralado", price: 1.50 },
+                    { name: "Confeitos coloridos", price: 1.50 }
+                ]
+            },
+            30: {
+                title: "Paçoca Caseira",
+                price: 5.90,
+                description: "Paçoca de amendoim artesanal",
+                image: "https://static.itdg.com.br/images/1200-630/cec0b16addd23c8a38521c1d2b7a48ff/231275-original.jpg",
+                category: "doces",
+                emoji: "🥜",
+                sizes: null,
+                ingredients: [
+                    "Amendoim torrado",
+                    "Açúcar",
+                    "Sal",
+                    "Farinha de mandioca"
+                ],
+                complements: [
+                    { name: "Amendoim extra", price: 1.50 },
+                    { name: "Chocolate", price: 2.00 },
+                    { name: "Doce de leite", price: 2.00 },
+                    { name: "Coco ralado", price: 1.50 },
+                    { name: "Canela", price: 1.00 }
+                ]
+            },
+
+            // Bebidas (10 produtos)
+            31: {
+                title: "Café Especial",
+                price: 8.90,
+                description: "Café especial torrado e moído na hora",
+                image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                category: "bebidas",
+                emoji: "☕",
+                sizes: [
+                    { name: "Pequeno (200ml)", price: 6.90 },
+                    { name: "Médio (300ml)", price: 8.90 },
+                    { name: "Grande (400ml)", price: 10.90 }
+                ],
+                ingredients: [
+                    "Grãos de café arábica",
+                    "Água filtrada"
+                ],
+                complements: [
+                    { name: "Leite vaporizado", price: 2.00 },
+                    { name: "Chantilly", price: 3.00 },
+                    { name: "Xarope de baunilha", price: 2.50 },
+                    { name: "Xarope de caramelo", price: 2.50 },
+                    { name: "Canela em pó", price: 1.00 }
+                ]
+            },
+            32: {
+                title: "Suco Natural",
+                price: 12.90,
+                description: "Suco natural feito na hora, 500ml",
+                image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                category: "bebidas",
+                emoji: "🧃",
+                sizes: [
+                    { name: "Pequeno (300ml)", price: 8.90 },
+                    { name: "Médio (500ml)", price: 12.90 },
+                    { name: "Grande (700ml)", price: 15.90 }
+                ],
+                ingredients: [
+                    "Frutas frescas",
+                    "Água filtrada",
+                    "Gelo"
+                ],
+                complements: [
+                    { name: "Adoçante", price: 0.00 },
+                    { name: "Açúcar mascavo", price: 0.00 },
+                    { name: "Gengibre", price: 1.00 },
+                    { name: "Hortelã", price: 0.50 },
+                    { name: "Linhaça", price: 1.50 }
+                ]
+            },
+            33: {
+                title: "Cappuccino",
+                price: 14.90,
+                description: "Cappuccino cremoso com chocolate",
+                image: "https://vivasaudedigital.com.br/wp-content/uploads/2022/06/capuccino-com-leite-de-coco.png",
+                category: "bebidas",
+                emoji: "☕",
+                sizes: [
+                    { name: "Pequeno (200ml)", price: 11.90 },
+                    { name: "Médio (300ml)", price: 14.90 },
+                    { name: "Grande (400ml)", price: 17.90 }
+                ],
+                ingredients: [
+                    "Café espresso",
+                    "Leite vaporizado",
+                    "Espuma de leite",
+                    "Chocolate em pó",
+                    "Canela"
+                ],
+                complements: [
+                    { name: "Chantilly", price: 3.00 },
+                    { name: "Xarope de baunilha", price: 2.50 },
+                    { name: "Xarope de caramelo", price: 2.50 },
+                    { name: "Canela extra", price: 1.00 },
+                    { name: "Chocolate granulado", price: 2.00 }
+                ]
+            },
+            34: {
+                title: "Chocolate Quente",
+                price: 16.90,
+                description: "Chocolate quente cremoso com chantilly",
+                image: "https://perfectdailygrind.com/pt/wp-content/uploads/sites/5/2022/06/image-13-5.png",
+                category: "bebidas",
+                emoji: "🍫",
+                sizes: [
+                    { name: "Pequeno (200ml)", price: 13.90 },
+                    { name: "Médio (300ml)", price: 16.90 },
+                    { name: "Grande (400ml)", price: 19.90 }
+                ],
+                ingredients: [
+                    "Chocolate ao leite",
+                    "Leite",
+                    "Creme de leite",
+                    "Açúcar",
+                    "Chantilly"
+                ],
+                complements: [
+                    { name: "Chantilly extra", price: 3.00 },
+                    { name: "Marshmallow", price: 2.50 },
+                    { name: "Canela", price: 1.00 },
+                    { name: "Raspas de chocolate", price: 2.00 },
+                    { name: "Xarope de caramelo", price: 2.50 }
+                ]
+            },
+            35: {
+                title: "Chá Gelado",
+                price: 10.90,
+                description: "Chá gelado natural com limão, 500ml",
+                image: "https://content.paodeacucar.com/wp-content/uploads/2019/01/ch%C3%A1-gelado-preto.png",
+                category: "bebidas",
+                emoji: "🍵",
+                sizes: [
+                    { name: "Pequeno (300ml)", price: 7.90 },
+                    { name: "Médio (500ml)", price: 10.90 },
+                    { name: "Grande (700ml)", price: 13.90 }
+                ],
+                ingredients: [
+                    "Chá preto",
+                    "Limão",
+                    "Açúcar",
+                    "Gelo",
+                    "Hortelã"
+                ],
+                complements: [
+                    { name: "Adoçante", price: 0.00 },
+                    { name: "Açúcar mascavo", price: 0.00 },
+                    { name: "Limão extra", price: 1.00 },
+                    { name: "Hortelã extra", price: 0.50 },
+                    { name: "Pêssego", price: 2.00 }
+                ]
+            },
+            36: {
+                title: "Açaí",
+                price: 18.90,
+                description: "Açaí com complementos, 500ml",
+                image: "https://as2.ftcdn.net/jpg/03/16/45/55/1000_F_316455568_Vi2GLTHaO9jdX7mWQ1c2JOQRGfnFaXow.jpg",
+                category: "bebidas",
+                emoji: "🟣",
+                sizes: [
+                    { name: "Pequeno (300ml)", price: 14.90 },
+                    { name: "Médio (500ml)", price: 18.90 },
+                    { name: "Grande (700ml)", price: 22.90 }
+                ],
+                ingredients: [
+                    "Açaí natural",
+                    "Banana",
+                    "Granola",
+                    "Mel",
+                    "Leite condensado"
+                ],
+                complements: [
+                    { name: "Granola extra", price: 2.00 },
+                    { name: "Banana extra", price: 1.50 },
+                    { name: "Morango", price: 3.00 },
+                    { name: "Leite condensado extra", price: 2.00 },
+                    { name: "Paçoca", price: 2.50 }
+                ]
+            },
+            37: {
+                title: "Milkshake de chocolate",
+                price: 19.90,
+                description: "Milkshake cremoso de chocolate, 400ml",
+                image: "https://recipesblob.oetker.com.br/assets/786b185037aa4d6aae33f838ee5e7ef9/1272x764/milk-shake-de-chocolate.jpg",
+                category: "bebidas",
+                emoji: "🥤",
+                sizes: [
+                    { name: "Pequeno (300ml)", price: 16.90 },
+                    { name: "Médio (400ml)", price: 19.90 },
+                    { name: "Grande (500ml)", price: 22.90 }
+                ],
+                ingredients: [
+                    "Sorvete de chocolate",
+                    "Leite",
+                    "Chocolate",
+                    "Chantilly",
+                    "Calda de chocolate"
+                ],
+                complements: [
+                    { name: "Chantilly extra", price: 3.00 },
+                    { name: "Calda de chocolate extra", price: 2.50 },
+                    { name: "Granulado", price: 2.00 },
+                    { name: "Cerejas", price: 2.50 },
+                    { name: "Biscoito", price: 2.00 }
+                ]
+            },
+            38: {
+                title: "Vitamina de Frutas",
+                price: 15.90,
+                description: "Vitamina natural de banana, morango e mamão, 500ml",
+                image: "https://images.ctfassets.net/qfxflpv0atz9/4qQeUpEaYBOVPkoU6TJ6JQ/cddb5afebedf7afbb15cc995ea283ac5/receita-vitamina-header.jpg",
+                category: "bebidas",
+                emoji: "🥛",
+                sizes: [
+                    { name: "Pequeno (300ml)", price: 12.90 },
+                    { name: "Médio (500ml)", price: 15.90 },
+                    { name: "Grande (700ml)", price: 18.90 }
+                ],
+                ingredients: [
+                    "Banana",
+                    "Leite",
+                    "Aveia",
+                    "Mel",
+                    "Canela"
+                ],
+                complements: [
+                    { name: "Morango", price: 3.00 },
+                    { name: "Mamão", price: 2.00 },
+                    { name: "Linhaça", price: 1.50 },
+                    { name: "Mel extra", price: 1.50 },
+                    { name: "Granola", price: 2.00 }
+                ]
+            },
+            39: {
+                title: "Água de Coco",
+                price: 8.90,
+                description: "Água de coco natural fresca, 500ml",
+                image: "https://blog-obahortifruti.redeoba.com.br/wp-content/uploads/2022/01/Agua_de_coco_conheca_os_principais_mitos_e_beneficios_da_bebida_Oba_Hortifruti-3.png",
+                category: "bebidas",
+                emoji: "🥥",
+                sizes: [
+                    { name: "Pequeno (300ml)", price: 6.90 },
+                    { name: "Médio (500ml)", price: 8.90 },
+                    { name: "Grande (700ml)", price: 10.90 }
+                ],
+                ingredients: [
+                    "Água de coco natural",
+                    "Gelo"
+                ],
+                complements: [
+                    { name: "Limão", price: 1.00 },
+                    { name: "Hortelã", price: 0.50 },
+                    { name: "Açúcar", price: 0.00 },
+                    { name: "Gengibre", price: 1.00 },
+                    { name: "Abacaxi", price: 2.00 }
+                ]
+            },
+            40: {
+                title: "Coca-Cola",
+                price: 7.90,
+                description: "Refrigerante, 350ml",
+                image: "https://cdn.gazetasp.com.br/img/c/825/500/dn_arquivo/2025/10/image-fx-55_1.jpg",
+                category: "bebidas",
+                emoji: "🥤",
+                sizes: [
+                    { name: "Lata (350ml)", price: 7.90 },
+                    { name: "Garrafa (600ml)", price: 12.90 },
+                    { name: "2 Litros", price: 15.90 }
+                ],
+                ingredients: [
+                    "Refrigerante",
+                    "Gelo"
+                ],
+                complements: [
+                    { name: "Limão", price: 1.00 },
+                    { name: "Gelo extra", price: 0.50 },
+                    { name: "Canudo especial", price: 1.00 },
+                    { name: "Copo personalizado", price: 2.00 },
+                    { name: "Guardanapo", price: 0.50 }
+                ]
+            },
+
+            // Lanches (10 produtos)
+            41: {
+                title: "Sanduíche Natural",
+                price: 18.90,
+                description: "Sanduíche com frango desfiado e vegetais frescos",
+                image: "https://images.unsplash.com/photo-1567234669003-dce7a7a88821?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                category: "lanches",
+                emoji: "🥪",
+                sizes: null,
+                ingredients: [
+                    "Pão integral",
+                    "Frango desfiado",
+                    "Alface",
+                    "Tomate",
+                    "Cenoura ralada",
+                    "Maionese caseira"
+                ],
+                complements: [
+                    { name: "Queijo prato", price: 2.50 },
+                    { name: "Peito de peru", price: 3.00 },
+                    { name: "Cream cheese", price: 2.00 },
+                    { name: "Bacon crocante", price: 4.00 },
+                    { name: "Molho especial", price: 1.50 }
+                ]
+            },
+            42: {
+                title: "Torrada",
+                price: 12.90,
+                description: "Torrada quente tradicional com queijo e presunto",
+                image: "https://catracalivre.com.br/wp-content/uploads/2023/12/istock-155388694-1.jpg",
+                category: "lanches",
+                emoji: "🧀",
+                sizes: null,
+                ingredients: [
+                    "Pão de forma",
+                    "Queijo prato",
+                    "Presunto",
+                    "Manteiga"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 2.50 },
+                    { name: "Presunto extra", price: 2.50 },
+                    { name: "Tomate", price: 1.50 },
+                    { name: "Orégano", price: 1.00 },
+                    { name: "Azeitonas", price: 1.50 }
+                ]
+            },
+            43: {
+                title: "Hambúrguer Artesanal",
+                price: 24.90,
+                description: "Hambúrguer artesanal com carne 100% bovina",
+                image: "https://www.seara.com.br/wp-content/uploads/2025/09/shutterstock_1751836019-scaled-1.jpg",
+                category: "lanches",
+                emoji: "🍔",
+                sizes: null,
+                ingredients: [
+                    "Pão de hambúrguer",
+                    "Carne bovina",
+                    "Queijo cheddar",
+                    "Alface",
+                    "Tomate",
+                    "Cebola roxa",
+                    "Molho especial"
+                ],
+                complements: [
+                    { name: "Bacon", price: 4.00 },
+                    { name: "Ovo", price: 2.00 },
+                    { name: "Cebola caramelizada", price: 2.50 },
+                    { name: "Molho barbecue", price: 1.50 },
+                    { name: "Picles", price: 1.50 }
+                ]
+            },
+            44: {
+                title: "Cachorro Quente",
+                price: 16.90,
+                description: "Cachorro-quente premium",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-YrQelX22JcQ6BIzVfzknKHOikrMM8-nl-w&s",
+                category: "lanches",
+                emoji: "🌭",
+                sizes: null,
+                ingredients: [
+                    "Pão de hot dog",
+                    "Salsicha premium",
+                    "Purê de batata",
+                    "Milho",
+                    "Ervilha",
+                    "Batata palha",
+                    "Molho especial"
+                ],
+                complements: [
+                    { name: "Queijo ralado", price: 2.00 },
+                    { name: "Bacon", price: 4.00 },
+                    { name: "Salsicha extra", price: 3.00 },
+                    { name: "Vinagrete", price: 1.50 },
+                    { name: "Molho de mostarda", price: 1.00 }
+                ]
+            },
+            45: {
+                title: "Wrap de Frango",
+                price: 19.90,
+                description: "Wrap com frango grelhado e vegetais",
+                image: "https://minhasreceitinhas.com.br/wp-content/uploads/2022/06/Homemade-Chicken-Shawarma-with-Vegetables.jpg",
+                category: "lanches",
+                emoji: "🌯",
+                sizes: null,
+                ingredients: [
+                    "Tortilha de trigo",
+                    "Frango grelhado",
+                    "Alface",
+                    "Tomate",
+                    "Cenoura ralada",
+                    "Molho de iogurte"
+                ],
+                complements: [
+                    { name: "Queijo", price: 2.50 },
+                    { name: "Bacon", price: 4.00 },
+                    { name: "Abacate", price: 3.00 },
+                    { name: "Molho picante", price: 1.50 },
+                    { name: "Azeitonas", price: 1.50 }
+                ]
+            },
+            46: {
+                title: "Panini",
+                price: 21.90,
+                description: "Panini italiano com queijo e presunto parma",
+                image: "https://img.freepik.com/fotos-premium/panini-italiano-recem-cozido-em-tabua-de-madeira_711700-22017.jpg",
+                category: "lanches",
+                emoji: "🥪",
+                sizes: null,
+                ingredients: [
+                    "Pão ciabatta",
+                    "Presunto parma",
+                    "Queijo muçarela de búfala",
+                    "Tomate seco",
+                    "Rúcula",
+                    "Azeite de oliva"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 3.00 },
+                    { name: "Presunto extra", price: 3.50 },
+                    { name: "Pesto", price: 2.50 },
+                    { name: "Azeitonas pretas", price: 2.00 },
+                    { name: "Manjericão", price: 1.50 }
+                ]
+            },
+            47: {
+                title: "Bauru",
+                price: 17.90,
+                description: "Bauru tradicional com rosbife e queijo",
+                image: "https://cloudfront-us-east-1.images.arcpublishing.com/estadao/7Q6CMYFCDVCK3E2KZOH7AVCHKA.JPG",
+                category: "lanches",
+                emoji: "🥪",
+                sizes: null,
+                ingredients: [
+                    "Pão francês",
+                    "Rosbife",
+                    "Queijo prato",
+                    "Tomate",
+                    "Picles",
+                    "Maionese"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 2.50 },
+                    { name: "Rosbife extra", price: 3.50 },
+                    { name: "Alface", price: 1.00 },
+                    { name: "Cebola", price: 1.00 },
+                    { name: "Molho barbecue", price: 1.50 }
+                ]
+            },
+            48: {
+                title: "Torta Salgada",
+                price: 14.90,
+                description: "Torta salgada de frango com massa folhada",
+                image: "https://megasabores.com/wp-content/uploads/2025/02/Torta-Salgada-de-Frango-com-Catupiry-e-Massa-Folhada-750x500.jpg",
+                category: "lanches",
+                emoji: "🥧",
+                sizes: null,
+                ingredients: [
+                    "Massa folhada",
+                    "Frango desfiado",
+                    "Milho",
+                    "Ervilha",
+                    "Cenoura",
+                    "Queijo",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 2.50 },
+                    { name: "Bacon", price: 3.00 },
+                    { name: "Azeitona", price: 1.50 },
+                    { name: "Orégano", price: 1.00 },
+                    { name: "Molho de pimenta", price: 1.00 }
+                ]
+            },
+            49: {
+                title: "Esfiha",
+                price: 6.90,
+                description: "Esfiha aberta de carne, 3 unidades",
+                image: "https://www.estadao.com.br/resizer/Nea4UgTnqfeLYQYZOWdyDyvJLKE=/arc-anglerfish-arc2-prod-estadao/public/JW7DGFUV6BHIXIAN4UESUV43WY.jpeg",
+                category: "lanches",
+                emoji: "🥟",
+                sizes: null,
+                ingredients: [
+                    "Massa de pão",
+                    "Carne moída",
+                    "Cebola",
+                    "Tomate",
+                    "Hortelã",
+                    "Limão",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Queijo", price: 2.00 },
+                    { name: "Bacon", price: 2.50 },
+                    { name: "Azeitona", price: 1.50 },
+                    { name: "Molho de iogurte", price: 1.50 },
+                    { name: "Limão extra", price: 1.00 }
+                ]
+            },
+            50: {
+                title: "Crepe",
+                price: 16.90,
+                description: "Crepe de frango com catupiry",
+                image: "https://s2-receitas.glbimg.com/QJEs301-R6zVT13k0QxJ__w0LLk=/0x0:1366x768/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2024/V/t/hSlC1KRGaykNMlnAw7Aw/crepe-no-palito-receita.jpg",
+                category: "lanches",
+                emoji: "🥞",
+                sizes: null,
+                ingredients: [
+                    "Massa de crepe",
+                    "Frango desfiado",
+                    "Catupiry",
+                    "Milho",
+                    "Ervilha",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 2.50 },
+                    { name: "Presunto", price: 2.50 },
+                    { name: "Bacon", price: 3.00 },
+                    { name: "Molho branco", price: 2.00 },
+                    { name: "Azeitonas", price: 1.50 }
+                ]
+            },
+
+            // Salgados (10 produtos)
+            51: {
+                title: "Empada",
+                price: 7.90,
+                description: "Empada de frango com massa amanteigada",
+                image: "https://assets.unileversolutions.com/recipes-v2/35789.png",
+                category: "salgados",
+                emoji: "🥧",
+                sizes: null,
+                ingredients: [
+                    "Farinha de trigo",
+                    "Manteiga",
+                    "Frango desfiado",
+                    "Azeitonas",
+                    "Temperos naturais"
+                ],
+                complements: [
+                    { name: "Molho de pimenta", price: 1.00 },
+                    { name: "Ketchup", price: 0.50 },
+                    { name: "Mostarda", price: 0.50 },
+                    { name: "Maionese", price: 0.50 },
+                    { name: "Molho barbecue", price: 1.00 }
+                ]
+            },
+            52: {
+                title: "Coxinha",
+                price: 8.90,
+                description: "Coxinha de frango com catupiry, 3 unidades",
+                image: "https://sabores-new.s3.amazonaws.com/public/2025/01/COXINHA-scaled.jpg",
+                category: "salgados",
+                emoji: "🍗",
+                sizes: null,
+                ingredients: [
+                    "Massa de batata",
+                    "Frango desfiado",
+                    "Catupiry",
+                    "Farinha de rosca",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Molho de pimenta", price: 1.00 },
+                    { name: "Ketchup", price: 0.50 },
+                    { name: "Mostarda", price: 0.50 },
+                    { name: "Maionese", price: 0.50 },
+                    { name: "Molho barbecue", price: 1.00 }
+                ]
+            },
+            53: {
+                title: "Rissole",
+                price: 7.90,
+                description: "Rissole de carne com massa crocante, 3 unidades",
+                image: "https://s2-receitas.glbimg.com/mG0FbamgyjUkq1Nj_jSDyZMhXRM=/600x0/filters:quality(50)/https://i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2024/f/z/KtIQj7ThCVoEbvExZy8g/rissole-de-palmito-da-palmirinha.jpg",
+                category: "salgados",
+                emoji: "🥟",
+                sizes: null,
+                ingredients: [
+                    "Massa de pastel",
+                    "Carne moída",
+                    "Cebola",
+                    "Temperos",
+                    "Ovo",
+                    "Farinha de rosca"
+                ],
+                complements: [
+                    { name: "Molho de pimenta", price: 1.00 },
+                    { name: "Ketchup", price: 0.50 },
+                    { name: "Mostarda", price: 0.50 },
+                    { name: "Maionese", price: 0.50 },
+                    { name: "Molho barbecue", price: 1.00 }
+                ]
+            },
+            54: {
+                title: "Pastel",
+                price: 9.90,
+                description: "Pastel de carne com massa fina, 2 unidades",
+                image: "https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2007/11/Pastel_feiraaoo.jpg",
+                category: "salgados",
+                emoji: "🥟",
+                sizes: null,
+                ingredients: [
+                    "Massa de pastel",
+                    "Carne moída",
+                    "Ovo cozido",
+                    "Azeitona",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Molho de pimenta", price: 1.00 },
+                    { name: "Vinagrete", price: 1.50 },
+                    { name: "Limão", price: 1.00 },
+                    { name: "Molho de alho", price: 1.50 },
+                    { name: "Molho barbecue", price: 1.00 }
+                ]
+            },
+            55: {
+                title: "Quibe",
+                price: 10.90,
+                description: "Quibe assado de carne com trigo, 3 unidades",
+                image: "https://sabores-new.s3.amazonaws.com/public/2024/11/quibe-arabe.jpg",
+                category: "salgados",
+                emoji: "🍘",
+                sizes: null,
+                ingredients: [
+                    "Carne moída",
+                    "Trigo para quibe",
+                    "Hortelã",
+                    "Cebola",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Molho de iogurte", price: 1.50 },
+                    { name: "Hortelã extra", price: 1.00 },
+                    { name: "Limão", price: 1.00 },
+                    { name: "Azeite", price: 1.00 },
+                    { name: "Pimenta", price: 1.00 }
+                ]
+            },
+            56: {
+                title: "Bolinha de Queijo",
+                price: 11.90,
+                description: "Bolinha de queijo frita, 5 unidades",
+                image: "https://sabores-new.s3.amazonaws.com/public/2024/11/bolinha-de-queijo.jpg",
+                category: "salgados",
+                emoji: "🧀",
+                sizes: null,
+                ingredients: [
+                    "Queijo minas",
+                    "Batata",
+                    "Farinha de trigo",
+                    "Ovo",
+                    "Farinha de rosca",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Molho de pimenta", price: 1.00 },
+                    { name: "Ketchup", price: 0.50 },
+                    { name: "Mostarda", price: 0.50 },
+                    { name: "Maionese", price: 0.50 },
+                    { name: "Molho barbecue", price: 1.00 }
+                ]
+            },
+            57: {
+                title: "Enroladinho de Salsicha",
+                price: 8.90,
+                description: "Enroladinho de salsicha com massa de pão, 3 unidades",
+                image: "https://nacolher.com/wp-content/uploads/2023/09/enroladinho-de-salsicha.jpg",
+                category: "salgados",
+                emoji: "🌭",
+                sizes: null,
+                ingredients: [
+                    "Massa de pão",
+                    "Salsicha",
+                    "Queijo",
+                    "Ovo",
+                    "Farinha de rosca"
+                ],
+                complements: [
+                    { name: "Molho de pimenta", price: 1.00 },
+                    { name: "Ketchup", price: 0.50 },
+                    { name: "Mostarda", price: 0.50 },
+                    { name: "Maionese", price: 0.50 },
+                    { name: "Molho barbecue", price: 1.00 }
+                ]
+            },
+            58: {
+                title: "Pão de Batata com Recheio",
+                price: 12.90,
+                description: "Pão de batata recheado com presunto e queijo, 3 unidades",
+                image: "https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2020/05/25/pao-batata-carne-seca.jpg",
+                category: "salgados",
+                emoji: "🥔",
+                sizes: null,
+                ingredients: [
+                    "Massa de pão de batata",
+                    "Presunto",
+                    "Queijo",
+                    "Orégano",
+                    "Azeitonas"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 2.50 },
+                    { name: "Presunto extra", price: 2.50 },
+                    { name: "Bacon", price: 3.00 },
+                    { name: "Catupiry", price: 3.00 },
+                    { name: "Azeitonas extra", price: 1.50 }
+                ]
+            },
+            59: {
+                title: "Torta de Frango",
+                price: 15.90,
+                description: "Torta de frango com massa podre, fatia",
+                image: "https://areademulher.r7.com/wp-content/uploads/2022/08/receita-de-torta-de-frango-com-requeijao.jpeg",
+                category: "salgados",
+                emoji: "🥧",
+                sizes: null,
+                ingredients: [
+                    "Massa podre",
+                    "Frango desfiado",
+                    "Milho",
+                    "Ervilha",
+                    "Cenoura",
+                    "Queijo",
+                    "Temperos"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 2.50 },
+                    { name: "Bacon", price: 3.00 },
+                    { name: "Azeitona", price: 1.50 },
+                    { name: "Orégano", price: 1.00 },
+                    { name: "Molho de pimenta", price: 1.00 }
+                ]
+            },
+            60: {
+                title: "Pizza Individual",
+                price: 19.90,
+                description: "Pizza individual de calabresa com queijo",
+                image: "https://img.freepik.com/fotos-premium/uma-pizza-quadrada-de-calabresa-com-queijo-e-calabresa_3146-4323.jpg",
+                category: "salgados",
+                emoji: "🍕",
+                sizes: null,
+                ingredients: [
+                    "Massa de pizza",
+                    "Molho de tomate",
+                    "Queijo muçarela",
+                    "Calabresa",
+                    "Cebola",
+                    "Orégano"
+                ],
+                complements: [
+                    { name: "Queijo extra", price: 3.00 },
+                    { name: "Calabresa extra", price: 3.00 },
+                    { name: "Azeitona", price: 1.50 },
+                    { name: "Pimenta", price: 1.00 },
+                    { name: "Orégano extra", price: 1.00 }
+                ]
+            }
+        };
+
+        // Variáveis globais
+        let cart = [];
+        let currentProduct = null;
+        let modalQuantity = 1;
+
+        // Elementos DOM
+        const productsGrid = document.getElementById('products-grid');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartItems = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const addressSection = document.getElementById('address-section');
+        const deliveryHome = document.getElementById('delivery-home');
+        const deliveryPickup = document.getElementById('delivery-pickup');
+        const locationCard = document.getElementById('location-card');
+        const feedbackMessage = document.getElementById('feedback-message');
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                loadProducts();
+                setupEventListeners();
+                updateCart();
+                
+                // Configurar interação do botão de localização
+                locationCard.addEventListener('click', function() {
+                    window.open('https://maps.google.com/?q=Rua+Ala,+299+-+Bom+Jesus,+Porto+Alegre', '_blank');
+                });
+                
+                // Permitir ativação por teclado
+                locationCard.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.open('https://maps.google.com/?q=Rua+Ala,+299+-+Bom+Jesus,+Porto+Alegre', '_blank');
+                    }
+                });
+            } catch (error) {
+                console.error('Erro ao inicializar a página:', error);
+                showFeedback('Erro ao carregar a página. Tente recarregar.', 'error');
+            }
+        });
+
+        // Carregar produtos na página
+        function loadProducts() {
+            productsGrid.innerHTML = '';
+            
+            for (const id in products) {
+                const product = products[id];
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-category', product.category);
+                productCard.setAttribute('data-product-id', id);
+                
+                // Tamanhos
+                let sizesHTML = '';
+                if (product.sizes) {
+                    sizesHTML = `
+                        <div class="size-options">
+                            <h4>Tamanho:</h4>
+                            ${product.sizes.map((size, index) => `
+                                <div class="size-option">
+                                    <input type="radio" id="size-${id}-${index}" name="size-${id}" 
+                                           value="${index}" ${index === 1 ? 'checked' : ''} 
+                                           data-price="${size.price}">
+                                    <label for="size-${id}-${index}">${size.name}</label>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+                
+                // Complementos - AGORA COM FORMATAÇÃO DE MOEDA BRASILEIRA
+                let complementsHTML = '';
+                if (product.complements && product.complements.length > 0) {
+                    complementsHTML = `
+                        <div class="complements-section">
+                            <h4>Complementos:</h4>
+                            ${product.complements.map((complement, index) => `
+                                <div class="complement-item">
+                                    <div class="complement-info">
+                                        <input type="checkbox" id="complement-${id}-${index}" 
+                                               class="complement-checkbox" 
+                                               data-name="${complement.name}" 
+                                               data-price="${complement.price}">
+                                        <label for="complement-${id}-${index}">${complement.name}</label>
+                                    </div>
+                                    <span class="complement-price">+ ${formatCurrency(complement.price)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+                
+                productCard.innerHTML = `
+                    <div class="product-image" style="background-image: url('${product.image}')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.emoji} ${product.title}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <p class="product-price">${formatCurrency(getProductPrice(id))}</p>
+                        ${sizesHTML}
+                        ${complementsHTML}
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" data-action="decrease" aria-label="Diminuir quantidade">-</button>
+                                <span class="quantity-value" id="quantity-${id}">0</span>
+                                <button class="quantity-btn" data-action="increase" aria-label="Aumentar quantidade">+</button>
+                            </div>
+                            <button class="btn btn-add" data-product-id="${id}">Adicionar</button>
+                        </div>
+                        <div class="item-total" id="item-total-${id}">${formatCurrency(0)}</div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            }
+            
+            // Adicionar event listeners para os botões de quantidade
+            document.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    const productCard = this.closest('.product-card');
+                    const productId = productCard.getAttribute('data-product-id');
+                    const quantityElement = document.getElementById(`quantity-${productId}`);
+                    let quantity = parseInt(quantityElement.textContent);
+                    
+                    if (action === 'increase') {
+                        quantity++;
+                    } else if (action === 'decrease' && quantity > 0) {
+                        quantity--;
+                    }
+                    
+                    quantityElement.textContent = quantity;
+                    updateItemTotal(productId);
+                });
+            });
+            
+            // Adicionar event listeners para tamanhos
+            document.querySelectorAll('.size-option input').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const productCard = this.closest('.product-card');
+                    const productId = productCard.getAttribute('data-product-id');
+                    updateItemTotal(productId);
+                });
+            });
+            
+            // Adicionar event listeners para complementos
+            document.querySelectorAll('.complement-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const productCard = this.closest('.product-card');
+                    const productId = productCard.getAttribute('data-product-id');
+                    updateItemTotal(productId);
+                });
+            });
+            
+            // Adicionar event listeners para botões de adicionar
+            document.querySelectorAll('.btn-add').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    const quantity = parseInt(document.getElementById(`quantity-${productId}`).textContent);
+                    
+                    if (quantity > 0) {
+                        addToCart(productId, quantity);
+                        // Resetar quantidade após adicionar
+                        document.getElementById(`quantity-${productId}`).textContent = '0';
+                        document.getElementById(`item-total-${productId}`).textContent = formatCurrency(0);
+                    } else {
+                        showFeedback('Selecione pelo menos 1 item!', 'error');
+                    }
+                });
+            });
+        }
+
+        // Formatar valor para moeda brasileira
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        // Obter preço base do produto
+        function getProductPrice(productId) {
+            const product = products[productId];
+            if (product.sizes) {
+                const selectedSize = document.querySelector(`input[name="size-${productId}"]:checked`);
+                return selectedSize ? parseFloat(selectedSize.getAttribute('data-price')) : product.price;
+            }
+            return product.price;
+        }
+
+        // Obter tamanho selecionado
+        function getSelectedSize(productId) {
+            const product = products[productId];
+            if (product.sizes) {
+                const selectedSize = document.querySelector(`input[name="size-${productId}"]:checked`);
+                if (selectedSize) {
+                    const sizeIndex = parseInt(selectedSize.value);
+                    return product.sizes[sizeIndex];
+                }
+            }
+            return null;
+        }
+
+        // Obter complementos selecionados
+        function getSelectedComplements(productId) {
+            const checkboxes = document.querySelectorAll(`.product-card[data-product-id="${productId}"] .complement-checkbox:checked`);
+            return Array.from(checkboxes).map(checkbox => ({
+                name: checkbox.getAttribute('data-name'),
+                price: parseFloat(checkbox.getAttribute('data-price'))
+            }));
+        }
+
+        // Atualizar total do item
+        function updateItemTotal(productId) {
+            const quantity = parseInt(document.getElementById(`quantity-${productId}`).textContent);
+            const basePrice = getProductPrice(productId);
+            const selectedComplements = getSelectedComplements(productId);
+            const complementTotal = selectedComplements.reduce((sum, comp) => sum + comp.price, 0);
+            const total = (basePrice + complementTotal) * quantity;
+            
+            document.getElementById(`item-total-${productId}`).textContent = formatCurrency(total);
+        }
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Toggle do carrinho
+            document.getElementById('cart-toggle').addEventListener('click', function(e) {
+                e.preventDefault();
+                cartSidebar.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Previne scroll do body
+            });
+            
+            document.getElementById('close-cart').addEventListener('click', function() {
+                cartSidebar.classList.remove('active');
+                document.body.style.overflow = ''; // Restaura scroll do body
+            });
+            
+            // Filtros de categoria
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    filterProducts(category);
+                    
+                    // Atualizar estado ativo
+                    document.querySelectorAll('.category-card').forEach(c => {
+                        c.classList.remove('active');
+                        c.setAttribute('aria-selected', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+                });
+                
+                // Permitir navegação por teclado
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+            
+            // Controle de entrega/retirada
+            deliveryHome.addEventListener('change', function() {
+                if (this.checked) {
+                    addressSection.classList.add('active');
+                }
+            });
+            
+            deliveryPickup.addEventListener('change', function() {
+                if (this.checked) {
+                    addressSection.classList.remove('active');
+                }
+            });
+            
+            // Atualizar endereço confirmado
+            document.getElementById('customer-street').addEventListener('input', updateConfirmedAddress);
+            document.getElementById('customer-number').addEventListener('input', updateConfirmedAddress);
+            document.getElementById('customer-neighborhood').addEventListener('input', updateConfirmedAddress);
+            document.getElementById('customer-complement').addEventListener('input', updateConfirmedAddress);
+            
+            // Botão de finalizar pedido
+            checkoutBtn.addEventListener('click', function() {
+                if (!validateCheckout()) {
+                    return;
+                }
+                
+                if (cart.length === 0) {
+                    showFeedback('Seu carrinho está vazio!', 'error');
+                    return;
+                }
+                
+                const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+                const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
+                let message = `*Pedido - Padoka da SuSu*%0A%0A`;
+                
+                // Adicionar itens do carrinho
+                cart.forEach(item => {
+                    message += `*${item.quantity}x ${item.title}* - ${formatCurrency(item.totalPrice)}%0A`;
+                    if (item.selectedSize) {
+                        message += `  Tamanho: ${item.selectedSize.name}%0A`;
+                    }
+                    if (item.selectedComplements && item.selectedComplements.length > 0) {
+                        message += `  Complementos: ${item.selectedComplements.map(c => c.name).join(', ')}%0A`;
+                    }
+                    message += `%0A`;
+                });
+                
+                // Adicionar totais
+                const subtotal = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+                const total = subtotal;
+                
+                message += `*Subtotal:* ${formatCurrency(subtotal)}%0A`;
+                message += `*Total:* ${formatCurrency(total)}%0A%0A`;
+                
+                message += `*Forma de pagamento:* ${getPaymentMethodText(paymentMethod)}%0A`;
+                message += `*Entrega:* ${deliveryMethod === 'home' ? 'Entrega em casa' : 'Retirar no local'}%0A`;
+                
+                // Se for entrega em casa, adicionar endereço
+                if (deliveryMethod === 'home') {
+                    const street = document.getElementById('customer-street').value;
+                    const number = document.getElementById('customer-number').value;
+                    const neighborhood = document.getElementById('customer-neighborhood').value;
+                    const complement = document.getElementById('customer-complement').value;
+                    const confirmedAddress = document.getElementById('customer-address-confirm').value;
+                    
+                    message += `*Endereço de entrega:*%0A`;
+                    message += `${confirmedAddress || `${street}, ${number} - ${neighborhood}${complement ? ` - ${complement}` : ''}`}%0A`;
+                    
+                    // Adicionar link do Google Maps
+                    if (confirmedAddress) {
+                        const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(confirmedAddress + ', Porto Alegre')}`;
+                        message += `📍 [Ver no Google Maps](${mapsUrl})%0A%0A`;
+                    }
+                }
+                
+                message += `*Observações:* ...`;
+                
+                // Abrir WhatsApp
+                const phone = "5551993312600"; // Substitua pelo número real
+                window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                
+                // Fechar carrinho após finalizar pedido
+                cartSidebar.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Validar checkout
+        function validateCheckout() {
+            const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
+            let isValid = true;
+            
+            // Resetar erros
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.classList.remove('error');
+            });
+            
+            if (deliveryMethod === 'home') {
+                const street = document.getElementById('customer-street').value;
+                const number = document.getElementById('customer-number').value;
+                const neighborhood = document.getElementById('customer-neighborhood').value;
+                
+                if (!street) {
+                    document.getElementById('street-error').style.display = 'block';
+                    document.getElementById('customer-street').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!number) {
+                    document.getElementById('number-error').style.display = 'block';
+                    document.getElementById('customer-number').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!neighborhood) {
+                    document.getElementById('neighborhood-error').style.display = 'block';
+                    document.getElementById('customer-neighborhood').classList.add('error');
+                    isValid = false;
+                }
+            }
+            
+            return isValid;
+        }
+
+        // Atualizar endereço confirmado
+        function updateConfirmedAddress() {
+            const street = document.getElementById('customer-street').value;
+            const number = document.getElementById('customer-number').value;
+            const neighborhood = document.getElementById('customer-neighborhood').value;
+            const complement = document.getElementById('customer-complement').value;
+            
+            if (street && number && neighborhood) {
+                let address = `${street}, ${number} - ${neighborhood}`;
+                if (complement) {
+                    address += ` - ${complement}`;
+                }
+                address += ', Porto Alegre';
+                
+                document.getElementById('customer-address-confirm').value = address;
+            }
+        }
+
+        // Filtrar produtos por categoria
+        function filterProducts(category) {
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Adicionar item ao carrinho
+        function addToCart(productId, quantity = 1) {
+            try {
+                const product = products[productId];
+                const selectedSize = getSelectedSize(productId);
+                const selectedComplements = getSelectedComplements(productId);
+                
+                // Calcular preço total
+                const basePrice = selectedSize ? selectedSize.price : product.price;
+                const complementTotal = selectedComplements.reduce((sum, comp) => sum + comp.price, 0);
+                const totalPrice = (basePrice + complementTotal) * quantity;
+                
+                const cartItem = {
+                    id: productId,
+                    title: product.title,
+                    price: basePrice,
+                    quantity: quantity,
+                    emoji: product.emoji,
+                    selectedSize: selectedSize,
+                    selectedComplements: selectedComplements,
+                    totalPrice: totalPrice
+                };
+                
+                cart.push(cartItem);
+                updateCart();
+                
+                // Feedback visual
+                showFeedback(`${quantity}x ${product.title} adicionado ao carrinho!`, 'success');
+                
+                const addButton = document.querySelector(`.btn-add[data-product-id="${productId}"]`);
+                const originalText = addButton.textContent;
+                addButton.textContent = 'Adicionado!';
+                addButton.style.backgroundColor = '#6e8a55';
+                
+                setTimeout(() => {
+                    addButton.textContent = originalText;
+                    addButton.style.backgroundColor = '';
+                }, 1500);
+            } catch (error) {
+                console.error('Erro ao adicionar item ao carrinho:', error);
+                showFeedback('Erro ao adicionar item ao carrinho', 'error');
+            }
+        }
+
+        // Remover item do carrinho
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+            showFeedback('Item removido do carrinho', 'success');
+        }
+
+        // Atualizar carrinho
+        function updateCart() {
+            try {
+                cartItems.innerHTML = '';
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                
+                if (cart.length === 0) {
+                    emptyCartMessage.style.display = 'block';
+                    checkoutBtn.disabled = true;
+                } else {
+                    emptyCartMessage.style.display = 'none';
+                    checkoutBtn.disabled = false;
+                    
+                    cart.forEach((item, index) => {
+                        const cartItemElement = document.createElement('div');
+                        cartItemElement.className = 'cart-item';
+                        
+                        cartItemElement.innerHTML = `
+                            <div class="cart-item-info">
+                                <h4>${item.emoji} ${item.title}</h4>
+                                ${item.selectedSize ? `<p class="cart-item-size">${item.selectedSize.name}</p>` : ''}
+                                <p class="cart-item-price">${formatCurrency(item.totalPrice)}</p>
+                                ${item.selectedComplements.length > 0 ? 
+                                    `<p class="cart-item-complements">${item.selectedComplements.map(c => c.name).join(', ')}</p>` : 
+                                    ''
+                                }
+                                <div class="cart-item-quantity">
+                                    <span>Quantidade: ${item.quantity}</span>
+                                </div>
+                            </div>
+                            <button class="remove-item" data-index="${index}" aria-label="Remover item">
+                                <i class="fas fa-times" aria-hidden="true"></i>
+                            </button>
+                        `;
+                        
+                        cartItems.appendChild(cartItemElement);
+                    });
+                    
+                    // Adicionar event listeners para os botões de remover
+                    document.querySelectorAll('.remove-item').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const index = parseInt(this.getAttribute('data-index'));
+                            removeFromCart(index);
+                        });
+                    });
+                }
+                
+                // Atualizar totais
+                const subtotal = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+                const total = subtotal;
+                
+                cartSubtotal.textContent = formatCurrency(subtotal);
+                cartTotal.textContent = formatCurrency(total);
+            } catch (error) {
+                console.error('Erro ao atualizar carrinho:', error);
+                showFeedback('Erro ao atualizar carrinho', 'error');
+            }
+        }
+
+        // Obter texto do método de pagamento
+        function getPaymentMethodText(method) {
+            switch(method) {
+                case 'online': return 'Online (link de pagamento)';
+                case 'machine': return 'Presencial';
+                case 'cash': return 'Dinheiro';
+                default: return method;
+            }
+        }
+
+        // Mostrar mensagem de feedback
+        function showFeedback(message, type) {
+            feedbackMessage.textContent = message;
+            feedbackMessage.className = `feedback-message ${type} show`;
+            
+            setTimeout(() => {
+                feedbackMessage.classList.remove('show');
+            }, 3000);
+        }
+
+        // Busca de produtos - CORREÇÃO APLICADA AQUI
+        document.getElementById('search-input').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const suggestionsContainer = document.getElementById('search-suggestions');
+            
+            if (searchTerm.length < 2) {
+                suggestionsContainer.style.display = 'none';
+                return;
+            }
+            
+            const filteredProducts = Object.values(products).filter(product => 
+                product.title.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filteredProducts.length > 0) {
+                suggestionsContainer.innerHTML = '';
+                filteredProducts.forEach(product => {
+                    const suggestion = document.createElement('div');
+                    suggestion.className = 'search-suggestion';
+                    suggestion.textContent = product.title;
+                    suggestion.setAttribute('role', 'option');
+                    suggestion.addEventListener('click', function() {
+                        document.getElementById('search-input').value = product.title;
+                        suggestionsContainer.style.display = 'none';
+                        filterProducts('all');
+                        
+                        // CORREÇÃO: Encontrar o produto exato pelo ID em vez de usar o emoji
+                        const productCards = document.querySelectorAll('.product-card');
+                        productCards.forEach(card => {
+                            const productId = card.getAttribute('data-product-id');
+                            if (products[productId].title === product.title) {
+                                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                card.style.boxShadow = '0 0 0 3px var(--primary)';
+                                card.style.transition = 'box-shadow 0.3s ease';
+                                setTimeout(() => {
+                                    card.style.boxShadow = '';
+                                }, 2000);
+                            }
+                        });
+                    });
+                    suggestionsContainer.appendChild(suggestion);
+                });
+                suggestionsContainer.style.display = 'block';
+            } else {
+                suggestionsContainer.style.display = 'none';
+            }
+        });
+
+        // Fechar sugestões ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-bar')) {
+                document.getElementById('search-suggestions').style.display = 'none';
+            }
+        });
+
+        // Fechar modal ao pressionar ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (cartSidebar.classList.contains('active')) {
+                    cartSidebar.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
